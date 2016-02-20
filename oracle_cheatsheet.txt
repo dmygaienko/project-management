@@ -1,0 +1,9 @@
+alter session set "_ORACLE_SCRIPT"=true;
+create user fred identified by fred;
+grant dba to fred;
+
+alter user fred identified by fred;
+ALTER USER fred IDENTIFIED BY STUDENT ACCOUNT UNLOCK;
+
+GRANT SYSDBA to fred;
+grant create session to fred;
