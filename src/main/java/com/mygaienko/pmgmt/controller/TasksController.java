@@ -1,9 +1,12 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.controller;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.screenframework.ScreensMediator;
+import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
 
 import com.mygaienko.pmgmt.model.Executor;
@@ -28,13 +31,13 @@ import javafx.scene.input.MouseEvent;
  * 
  * @author Angie
  */
-public class TasksController implements Initializable, ControlledScreen {
+public class TasksController implements Initializable, Screenable {
 	private TaskService taskSvc = TaskServiceImpl.getInstance(); 
 	private Project selectedProject;
 	private Task selectedTask;
 	private ObservableList<Task> obsTasks = FXCollections.observableArrayList();
 	private ObservableList<Executor> obsExecutors;
-	ScreensController myController;
+	ScreensMediator myController;
 	
 	@FXML
 	ListView<Task> tasksView;
@@ -83,7 +86,7 @@ public class TasksController implements Initializable, ControlledScreen {
 		}
 	}
 
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensMediator screenParent) {
 		myController = screenParent;
 
 	}

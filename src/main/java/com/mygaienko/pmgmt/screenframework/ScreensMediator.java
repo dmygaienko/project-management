@@ -2,6 +2,7 @@ package com.mygaienko.pmgmt.screenframework;
 
 import java.util.HashMap;
 
+import com.mygaienko.pmgmt.controller.Screenable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -18,14 +19,14 @@ import javafx.util.Duration;
  *
  * @author dmygaien
  */
-public class ScreensController  extends StackPane {
+public class ScreensMediator extends StackPane {
     //Holds the screens to be displayed
 
     private HashMap<String, Node> screens = new HashMap<>();
-    private HashMap<String, ControlledScreen> controllers = new HashMap<>();
+    private HashMap<String, Screenable> controllers = new HashMap<>();
     
     
-    public ScreensController() {
+    public ScreensMediator() {
         super();   
         this.setMinSize(0, 0);
     }
@@ -40,7 +41,7 @@ public class ScreensController  extends StackPane {
         return screens.get(name);
     }
     
-    public ControlledScreen getController(String name) {
+    public Screenable getController(String name) {
     	return controllers.get(name);
     }
 
@@ -50,7 +51,7 @@ public class ScreensController  extends StackPane {
         try {
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
             Parent loadScreen = (Parent) myLoader.load();
-            ControlledScreen myScreenControler = ((ControlledScreen) myLoader.getController());
+            Screenable myScreenControler = ((Screenable) myLoader.getController());
             myScreenControler.setScreenParent(this);
             addScreen(name, loadScreen);
             controllers.put(name, myScreenControler);

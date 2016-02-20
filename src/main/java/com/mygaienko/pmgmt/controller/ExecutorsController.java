@@ -1,10 +1,13 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Task;
+import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.screenframework.ScreensMediator;
+import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import com.mygaienko.pmgmt.service.ExecutorService;
 import com.mygaienko.pmgmt.service.ExecutorServiceImpl;
 
@@ -18,13 +21,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class ExecutorsController implements Initializable, ControlledScreen {
+public class ExecutorsController implements Initializable, Screenable {
 	private ExecutorService execSvc = ExecutorServiceImpl.getInstance(); 
 	private Task selectedTask;
 	private Executor selectedExecutor;
 	private ObservableList<Executor> obsExecutors = FXCollections.observableArrayList();
 	private ObservableList<Task> obsTasks = FXCollections.observableArrayList(); 
-	ScreensController myController;
+	ScreensMediator myController;
 
 	@FXML
 	ListView<Executor> executorsView;
@@ -48,7 +51,7 @@ public class ExecutorsController implements Initializable, ControlledScreen {
 	Button deleteExecutorBut;
 	
 	@Override
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensMediator screenParent) {
 		myController = screenParent;
 	}
 
@@ -58,7 +61,7 @@ public class ExecutorsController implements Initializable, ControlledScreen {
 	}
 	
 	public void initScreen(){	
-		selectedTask = (Task) Context.get(Context.SELECTED_TASK);	
+		selectedTask = (Task) Context.get(Context.SELECTED_TASK);
 		executorsView.setItems(obsExecutors);
 		obsTasks.clear();
 		tasksView.setItems(obsTasks);

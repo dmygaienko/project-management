@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.screenframework.TasksController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.controller.TasksController">
   <children>
     <Label layoutX="23.0" layoutY="18.0" prefWidth="83.0" text="Tasks for">
       <font>

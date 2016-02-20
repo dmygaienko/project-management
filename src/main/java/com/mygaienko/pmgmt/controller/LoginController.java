@@ -1,8 +1,11 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.controller;
 
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mygaienko.pmgmt.screenframework.ScreensMediator;
+import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,14 +18,14 @@ import javafx.scene.control.PasswordField;
  * 
  * @author dmygaien
  */
-public class LoginController implements Initializable, ControlledScreen {
+public class LoginController implements Initializable, Screenable {
 	@FXML
 	TextField name;
 	@FXML
 	PasswordField password;
 	@FXML
 	Label errorMessage;
-	ScreensController myController;
+	ScreensMediator myController;
 
 	/**
 	 * Initializes the controller class.
@@ -35,7 +38,7 @@ public class LoginController implements Initializable, ControlledScreen {
 	public void initScreen(){		
 	}
 
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensMediator screenParent) {
 		myController = screenParent;
 	}
 

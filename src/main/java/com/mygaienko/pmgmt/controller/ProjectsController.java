@@ -1,16 +1,16 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.screenframework.ScreensMediator;
+import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
@@ -19,9 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.service.ProjectService;
 import com.mygaienko.pmgmt.service.ProjectServiceImpl;
 
@@ -30,7 +28,7 @@ import com.mygaienko.pmgmt.service.ProjectServiceImpl;
  * 
  * @author dmygaien
  */
-public class ProjectsController implements Initializable, ControlledScreen {
+public class ProjectsController implements Initializable, Screenable {
 	private ProjectService projectSvc = ProjectServiceImpl.getInstance(); 
 	private static final String NAME = "name";
 	private static final String DESCRIPTION = "description";
@@ -38,7 +36,7 @@ public class ProjectsController implements Initializable, ControlledScreen {
 	private ObservableList<Project> obsProjects = FXCollections
 			.observableArrayList();
 
-	ScreensController myController;
+	ScreensMediator myController;
 
 	@FXML
 	ListView projectsView;
@@ -72,7 +70,7 @@ public class ProjectsController implements Initializable, ControlledScreen {
 		deleteProjectBut.setDisable(true);
 	}
 
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensMediator screenParent) {
 		myController = screenParent;
 	}
 

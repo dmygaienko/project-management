@@ -1,9 +1,6 @@
 package com.mygaienko.pmgmt.screenframework;
 
-import com.mygaienko.pmgmt.utils.EntityManagerSingleton;
-
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -29,7 +26,7 @@ public class ScreensFramework extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        ScreensController mainContainer = new ScreensController();
+        ScreensMediator mainContainer = new ScreensMediator();
         //load all screens
         mainContainer.loadScreen(ScreensFramework.loginScreen, ScreensFramework.loginScreenFile);
         mainContainer.loadScreen(ScreensFramework.projectsScreen, ScreensFramework.projectsFile);

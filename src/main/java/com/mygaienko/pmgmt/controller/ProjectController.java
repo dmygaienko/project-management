@@ -1,13 +1,13 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.screenframework.*;
 import org.joda.time.DateTime;
 
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.service.ExecutorService;
-import com.mygaienko.pmgmt.service.ExecutorServiceImpl;
 import com.mygaienko.pmgmt.service.ProjectService;
 import com.mygaienko.pmgmt.service.ProjectServiceImpl;
 
@@ -22,10 +22,10 @@ import javafx.scene.control.TextField;
  * 
  * @author dmygaien
  */
-public class ProjectController implements Initializable, ControlledScreen {
+public class ProjectController implements Initializable, Screenable {
 	private ProjectService projectSvc = ProjectServiceImpl.getInstance(); 
 	private Project selectedProject;
-	ScreensController myController;
+	ScreensMediator myController;
 
 	@FXML
 	TextField nameId;
@@ -72,7 +72,7 @@ public class ProjectController implements Initializable, ControlledScreen {
 		endDateId.setText(selectedProject.getEndDate().toString("yy-MM-dd"));
 	}
 	
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensMediator screenParent) {
 		myController = screenParent;
 	}
 

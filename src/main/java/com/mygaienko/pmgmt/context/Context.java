@@ -1,4 +1,4 @@
-package com.mygaienko.pmgmt.screenframework;
+package com.mygaienko.pmgmt.context;
 
 import java.util.HashMap;
 import java.util.Map;
