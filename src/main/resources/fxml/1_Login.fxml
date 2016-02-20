@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minHeight="450.0" pickOnBounds="false" prefHeight="450.0" prefWidth="600.0" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.screenframework.LoginController">
+  <children>
+    <Label layoutX="245.0" layoutY="65.0" text="Login Form">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+    <TextField fx:id="name" layoutX="233.0" layoutY="101.0" prefHeight="26.999908447265625" prefWidth="189.99990000000253" text="a" />
+    <Button layoutX="333.0" layoutY="191.0" mnemonicParsing="false" onAction="#login" prefHeight="26.999900000002526" prefWidth="91.0001220703125" text="Login" />
+    <!--     <Button layoutX="140.0" layoutY="211.0" mnemonicParsing="false" onAction="#registrate" prefHeight="29.0" prefWidth="92.99990844726562" text="Registrate" /> -->
+    <Label layoutX="140.0" layoutY="99.0" prefHeight="29.0" prefWidth="34.0" text="Name" />
+    <Label layoutX="140.0" layoutY="135.0" prefHeight="28.0" prefWidth="81.0" text="Password" />
+    <PasswordField fx:id="password" layoutX="233.0" layoutY="135.0" prefHeight="27.000099999997474" prefWidth="190.0" text="a" />
+    <Label fx:id="errorMessage" layoutX="140.0" layoutY="175.0" prefWidth="283.0" styleClass="error-message" text="" />
+  </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+	<persistence-unit name="oracle" transaction-type="RESOURCE_LOCAL">
+		<class>com.mygaienko.pmgmt.model.Executor</class>
+		<!-- <class>com.mygaienko.pmgmt.model.Project</class> <class>com.mygaienko.pmgmt.model.Task</class> -->
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl1" />
+			<property name="javax.persistence.jdbc.user" value="c##student" />
+			<property name="javax.persistence.jdbc.password" value="STUDENT" />
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+			<!--<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.show_sql" value="true" />
+			
+			<property name="jadira.usertype.autoRegisterUserTypes" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

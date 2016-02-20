@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.screenframework.TasksController">
+  <children>
+    <Label layoutX="23.0" layoutY="18.0" prefWidth="83.0" text="Tasks for">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="235.0" layoutY="42.0" pickOnBounds="false" prefHeight="87.0" prefWidth="241.0">
+      <children>
+        <Label minHeight="13.999908447265625" prefHeight="15.999908447265625" prefWidth="69.0" text="Description" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="Start Date" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label text="End Date" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="descriptionId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="startDateId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="endDateId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Button layoutX="515.0" layoutY="404.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
+    <Button layoutX="23.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToProject" text="Go To Project" />
+    <Label id="taskId" fx:id="projectId" layoutX="106.0" layoutY="21.0" text="Label" />
+    <ListView id="tasksId" fx:id="tasksView" layoutX="23.0" layoutY="48.0" onMouseClicked="#selectTask" prefHeight="159.0" prefWidth="195.0" />
+    <ListView fx:id="executorsView" layoutX="23.0" layoutY="241.0" prefHeight="114.00009999999747" prefWidth="195.0" />
+    <Label layoutX="23.0" layoutY="215.0" prefWidth="69.0" text="Executors" />
+    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="235.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteTask" text="Delete task" />
+    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="235.0" layoutY="139.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" />
+    <Button layoutX="372.0" layoutY="139.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" />
+    <Button layoutX="372.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToExecutors" text="Go To Executors" />
+  </children>
+</AnchorPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="437.9999000000025" prefWidth="472.9999000000025" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.screenframework.ExecutorsController">
+  <children>
+    <Label layoutX="203.0" layoutY="14.0" text="Executors">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="225.0" layoutY="47.0" pickOnBounds="false" prefHeight="88.0" prefWidth="213.0">
+      <children>
+        <Label minHeight="13.999908447265625" prefHeight="13.999908447265625" prefWidth="69.0" text="First name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="Last name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField id="fisrtName" fx:id="firstNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField id="lastName" fx:id="lastNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Button layoutX="399.0" layoutY="395.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
+    <Button layoutX="21.0" layoutY="395.0" mnemonicParsing="false" onAction="#goToTasks" text="Go To Tasks" />
+    <ListView fx:id="executorsView" layoutX="21.0" layoutY="53.0" onMouseClicked="#handleExecutorSelection" prefHeight="301.0" prefWidth="189.0" />
+    <Button fx:id="appointForTaskBut" layoutX="21.0" layoutY="362.0" mnemonicParsing="false" onAction="#appointForTask" text="Appoint for task" />
+    <Button fx:id="saveChangesBut" layoutX="225.0" layoutY="122.0" mnemonicParsing="false" onAction="#saveChanges" text="Save changes" />
+    <Button layoutX="328.0" layoutY="122.0" mnemonicParsing="false" onAction="#createNewExecutor" prefWidth="128.99990000000253" text="Create new executor" />
+    <Button fx:id="deleteExecutorBut" layoutX="226.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteExecutor" prefWidth="229.0" text="Delete executor" />
+    <ListView fx:id="tasksView" layoutX="226.0" layoutY="241.0" prefHeight="112.9998779296875" prefWidth="231.0" />
+    <Label layoutX="226.0" layoutY="219.0" text="Tasks" />
+  </children>
+</AnchorPane>
