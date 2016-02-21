@@ -1,5 +1,6 @@
 package com.mygaienko.pmgmt.service;
 
+import com.mygaienko.pmgmt.service.interfaces.TaskService;
 import org.junit.Test;
 
 import com.mygaienko.pmgmt.model.Project;
@@ -9,7 +10,7 @@ public class TaskServiceTest {
 	private static final String TEST_P_NAME = "test_pName";
 	private static final String TEST_P_DESCRIPTION = "test_pDescription";
 	private static final String TEST_T_NAME = "test_tName";
-	private  TaskService service = TaskServiceImpl.getInstance();
+	private TaskService service = TaskServiceImpl.getInstance();
 	
 	@Test
 	public void testPersistSimpleTask() {

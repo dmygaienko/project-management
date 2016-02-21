@@ -2,9 +2,10 @@ package com.mygaienko.pmgmt.service;
 
 import java.util.List;
 
-import com.mygaienko.pmgmt.dao.TaskDao;
+import com.mygaienko.pmgmt.dao.interfaces.TaskDao;
 import com.mygaienko.pmgmt.dao.TaskDaoImpl;
 import com.mygaienko.pmgmt.model.Task;
+import com.mygaienko.pmgmt.service.interfaces.TaskService;
 
 public class TaskServiceImpl implements TaskService {
 	private static TaskServiceImpl instance;

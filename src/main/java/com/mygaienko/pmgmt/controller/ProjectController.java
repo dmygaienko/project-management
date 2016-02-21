@@ -4,11 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.screenframework.*;
 import org.joda.time.DateTime;
 
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.service.ProjectService;
+import com.mygaienko.pmgmt.service.interfaces.ProjectService;
 import com.mygaienko.pmgmt.service.ProjectServiceImpl;
 
 import javafx.event.ActionEvent;

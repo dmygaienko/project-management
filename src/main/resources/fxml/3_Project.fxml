@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.controller.ProjectController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.ProjectController">
   <children>
     <Label layoutX="209.0" layoutY="14.0" text="Project">
       <font>
@@ -36,10 +36,10 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="515.0" layoutY="415.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
-    <Button layoutX="14.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToProjects" text="Go to Projects" />
+    <Button layoutX="562.0" layoutY="15.0" mnemonicParsing="false" onAction="#logoff" text="X" />
+    <Button layoutX="20.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToProjects" prefHeight="25.0" prefWidth="200.0" text="&lt;&lt;&lt; Go to Projects" />
     <Button fx:id="saveChanges" layoutX="123.0" layoutY="223.0" mnemonicParsing="false" onAction="#saveChanges" text="Save changes" />
     <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#createNewProject" text="Create new project" />
-    <Button fx:id="goToTasks" layoutX="237.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToTasks" text="Go to Tasks of current Project" />
+    <Button fx:id="goToTasks" layoutX="386.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToTasks" prefHeight="25.0" prefWidth="200.0" text="Go to current Tasks &gt;&gt;&gt;" />
   </children>
 </AnchorPane>

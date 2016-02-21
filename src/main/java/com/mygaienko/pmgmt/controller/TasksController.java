@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
@@ -12,7 +13,7 @@ import org.joda.time.DateTime;
 import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Project;
 import com.mygaienko.pmgmt.model.Task;
-import com.mygaienko.pmgmt.service.TaskService;
+import com.mygaienko.pmgmt.service.interfaces.TaskService;
 import com.mygaienko.pmgmt.service.TaskServiceImpl;
 
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package com.mygaienko.pmgmt.service;
+package com.mygaienko.pmgmt.service.interfaces;
 
 import java.util.List;
 

@@ -3,11 +3,9 @@ package com.mygaienko.pmgmt.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.transaction.NotSupportedException;
-import javax.transaction.SystemException;
 
+import com.mygaienko.pmgmt.dao.interfaces.ExecutorDao;
 import com.mygaienko.pmgmt.model.Executor;
-import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.utils.EntityManagerSingleton;
 
 public class ExecutorDaoImpl implements ExecutorDao {

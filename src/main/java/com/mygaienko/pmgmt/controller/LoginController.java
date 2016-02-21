@@ -4,6 +4,7 @@ package com.mygaienko.pmgmt.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import javafx.event.ActionEvent;

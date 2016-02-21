@@ -1,4 +1,4 @@
-package com.mygaienko.pmgmt.dao;
+package com.mygaienko.pmgmt.dao.interfaces;
 
 import java.util.List;
 

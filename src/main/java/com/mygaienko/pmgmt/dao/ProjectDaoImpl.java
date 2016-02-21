@@ -4,9 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.mygaienko.pmgmt.model.Executor;
+import com.mygaienko.pmgmt.dao.interfaces.ProjectDao;
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.utils.EntityManagerSingleton;
 
 public class ProjectDaoImpl implements ProjectDao {

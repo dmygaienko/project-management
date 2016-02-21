@@ -3,8 +3,7 @@ package com.mygaienko.pmgmt.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-
+import com.mygaienko.pmgmt.service.interfaces.ExecutorService;
 import org.junit.Test;
 
 import com.mygaienko.pmgmt.model.Executor;
@@ -17,7 +16,7 @@ public class ExecutorServiceTest {
 	private static final String TEST_LASTNAME2 = "test_lastname2";
 	private static final String TEST_FIRSTNAME2 = "test_firstname2";
 	
-	private  ExecutorService service = ExecutorServiceImpl.getInstance();
+	private ExecutorService service = ExecutorServiceImpl.getInstance();
 	
 	@Test
 	public void testPersist() {

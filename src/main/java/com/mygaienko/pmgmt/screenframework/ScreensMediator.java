@@ -2,7 +2,7 @@ package com.mygaienko.pmgmt.screenframework;
 
 import java.util.HashMap;
 
-import com.mygaienko.pmgmt.controller.Screenable;
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

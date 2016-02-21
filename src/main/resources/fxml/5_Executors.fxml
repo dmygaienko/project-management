@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="437.9999000000025" prefWidth="472.9999000000025" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.controller.ExecutorsController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="467.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.ExecutorsController">
   <children>
     <Label layoutX="203.0" layoutY="14.0" text="Executors">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="225.0" layoutY="47.0" pickOnBounds="false" prefHeight="88.0" prefWidth="213.0">
+    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="269.0" layoutY="53.0" pickOnBounds="false" prefHeight="88.0" prefWidth="213.0">
       <children>
-        <Label minHeight="13.999908447265625" prefHeight="13.999908447265625" prefWidth="69.0" text="First name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Label text="Last name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label minHeight="13.999908447265625" prefHeight="13.999908447265625" prefWidth="69.0" text="First name" />
+        <Label text="Last name" GridPane.rowIndex="1" />
         <TextField id="fisrtName" fx:id="firstNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <TextField id="lastName" fx:id="lastNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
@@ -30,14 +30,14 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="399.0" layoutY="395.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
-    <Button layoutX="21.0" layoutY="395.0" mnemonicParsing="false" onAction="#goToTasks" text="Go To Tasks" />
+    <Button layoutX="549.0" layoutY="15.0" mnemonicParsing="false" onAction="#logoff" text="X" />
+    <Button layoutX="21.0" layoutY="421.0" mnemonicParsing="false" onAction="#goToTasks" prefHeight="25.0" prefWidth="200.0" text="&lt;&lt;&lt; Go To Tasks" />
     <ListView fx:id="executorsView" layoutX="21.0" layoutY="53.0" onMouseClicked="#handleExecutorSelection" prefHeight="301.0" prefWidth="189.0" />
-    <Button fx:id="appointForTaskBut" layoutX="21.0" layoutY="362.0" mnemonicParsing="false" onAction="#appointForTask" text="Appoint for task" />
-    <Button fx:id="saveChangesBut" layoutX="225.0" layoutY="122.0" mnemonicParsing="false" onAction="#saveChanges" text="Save changes" />
-    <Button layoutX="328.0" layoutY="122.0" mnemonicParsing="false" onAction="#createNewExecutor" prefWidth="128.99990000000253" text="Create new executor" />
-    <Button fx:id="deleteExecutorBut" layoutX="226.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteExecutor" prefWidth="229.0" text="Delete executor" />
+    <Button fx:id="appointForTaskBut" layoutX="228.0" layoutY="365.0" mnemonicParsing="false" onAction="#appointForTask" text="Appoint for task" />
+    <Button fx:id="deleteExecutorBut" layoutX="426.0" layoutY="132.0" mnemonicParsing="false" onAction="#deleteExecutor" prefHeight="25.0" prefWidth="94.0" text="delete executor" />
     <ListView fx:id="tasksView" layoutX="226.0" layoutY="241.0" prefHeight="112.9998779296875" prefWidth="231.0" />
     <Label layoutX="226.0" layoutY="219.0" text="Tasks" />
+    <Button layoutX="236.0" layoutY="132.0" mnemonicParsing="false" onAction="#createNewExecutor" prefHeight="17.0" prefWidth="87.0" text="new executor" />
+    <Button fx:id="saveChangesBut" layoutX="332.0" layoutY="132.0" mnemonicParsing="false" onAction="#saveChanges" text="save changes" />
   </children>
 </AnchorPane>

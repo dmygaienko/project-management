@@ -1,11 +1,11 @@
-package com.mygaienko.pmgmt.dao;
+package com.mygaienko.pmgmt.service.interfaces;
 
 import java.util.List;
 
 import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Task;
 
-public interface ExecutorDao {
+public interface ExecutorService {
 	
 	Executor getExecutorById(int id);
 	
@@ -18,5 +18,4 @@ public interface ExecutorDao {
 	void persist(Executor executor);
 
 	void merge(Executor executor);
-
 }

@@ -3,9 +3,9 @@ package com.mygaienko.pmgmt.service;
 import java.util.List;
 
 import com.mygaienko.pmgmt.dao.ProjectDaoImpl;
-import com.mygaienko.pmgmt.dao.ProjectDao;
+import com.mygaienko.pmgmt.dao.interfaces.ProjectDao;
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.model.Task;
+import com.mygaienko.pmgmt.service.interfaces.ProjectService;
 
 public class ProjectServiceImpl implements ProjectService {
 	private static ProjectServiceImpl instance;

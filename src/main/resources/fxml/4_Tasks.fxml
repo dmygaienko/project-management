@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.controller.TasksController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.TasksController">
   <children>
     <Label layoutX="23.0" layoutY="18.0" prefWidth="83.0" text="Tasks for">
       <font>
@@ -33,15 +33,15 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="515.0" layoutY="404.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
-    <Button layoutX="23.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToProject" text="Go To Project" />
+    <Button layoutX="551.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoff" text="X" />
+    <Button layoutX="21.0" layoutY="404.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="17.0" prefWidth="201.0" text="&lt;&lt;&lt; Go To Project" />
     <Label id="taskId" fx:id="projectId" layoutX="106.0" layoutY="21.0" text="Label" />
     <ListView id="tasksId" fx:id="tasksView" layoutX="23.0" layoutY="48.0" onMouseClicked="#selectTask" prefHeight="159.0" prefWidth="195.0" />
-    <ListView fx:id="executorsView" layoutX="23.0" layoutY="241.0" prefHeight="114.00009999999747" prefWidth="195.0" />
-    <Label layoutX="23.0" layoutY="215.0" prefWidth="69.0" text="Executors" />
-    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="235.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteTask" text="Delete task" />
-    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="235.0" layoutY="139.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" />
-    <Button layoutX="372.0" layoutY="139.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" />
-    <Button layoutX="372.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToExecutors" text="Go To Executors" />
+    <ListView fx:id="executorsView" layoutX="356.0" layoutY="237.0" prefHeight="114.00009999999747" prefWidth="195.0" />
+    <Label layoutX="356.0" layoutY="211.0" prefWidth="69.0" text="Executors" />
+    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="433.0" layoutY="143.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="88.0" text="Delete task" />
+    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="337.0" layoutY="143.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" />
+    <Button layoutX="227.0" layoutY="143.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" />
+    <Button layoutX="376.0" layoutY="404.0" mnemonicParsing="false" onAction="#goToExecutors" prefHeight="16.0" prefWidth="201.0" text="Go To Executors &gt;&gt;&gt;" />
   </children>
 </AnchorPane>

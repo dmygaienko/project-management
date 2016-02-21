@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.mygaienko.pmgmt.model.Executor;
+import com.mygaienko.pmgmt.dao.interfaces.TaskDao;
 import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.utils.EntityManagerSingleton;
 

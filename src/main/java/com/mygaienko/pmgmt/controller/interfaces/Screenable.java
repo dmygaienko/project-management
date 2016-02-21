@@ -1,4 +1,4 @@
-package com.mygaienko.pmgmt.controller;
+package com.mygaienko.pmgmt.controller.interfaces;
 
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 

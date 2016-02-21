@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
@@ -20,7 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.service.ProjectService;
+import com.mygaienko.pmgmt.service.interfaces.ProjectService;
 import com.mygaienko.pmgmt.service.ProjectServiceImpl;
 
 /**

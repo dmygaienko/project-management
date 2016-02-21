@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" layoutX="0.0" layoutY="0.0" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" mouseTransparent="false" pickOnBounds="true" prefHeight="450.0" prefWidth="600.0" rotate="0.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" translateX="0.0" translateY="0.0" translateZ="0.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mygaienko.pmgmt.controller.ProjectsController">
+<AnchorPane id="AnchorPane" layoutX="0.0" layoutY="0.0" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" mouseTransparent="false" pickOnBounds="true" prefHeight="450.0" prefWidth="600.0" rotate="0.0" scaleX="1.0" scaleY="1.0" scaleZ="1.0" snapToPixel="true" translateX="0.0" translateY="0.0" translateZ="0.0" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.ProjectsController">
   <children>
     <Label layoutX="197.0" layoutY="4.0" minHeight="21.0" prefHeight="21.0" prefWidth="95.0" text="Projects">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <Button layoutX="484.0" layoutY="400.0" mnemonicParsing="false" onAction="#logoff" text="Log off" />
+    <Button layoutX="562.0" layoutY="13.0" mnemonicParsing="false" onAction="#logoff" text="X" />
     <!--     <Button layoutX="263.0" layoutY="266.0" mnemonicParsing="false" onAction="#goToProject" text="Go To Project" /> -->
     <VBox layoutX="9.0" layoutY="38.0" prefHeight="220.0" prefWidth="181.0">
       <children>
@@ -46,8 +46,8 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="247.0" layoutY="278.0" mnemonicParsing="false" onAction="#goToNewProjectScreen" text="Create new Project" />
-    <Button id="deleteProject" fx:id="deleteProjectBut" layoutX="44.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteProject" text="deleteProject" />
+    <Button layoutX="111.0" layoutY="266.0" mnemonicParsing="false" onAction="#goToNewProjectScreen" text="new project" />
+    <Button id="deleteProject" fx:id="deleteProjectBut" layoutX="9.0" layoutY="266.0" mnemonicParsing="false" onAction="#deleteProject" text="delete project" />
   </children>
   <padding>
     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

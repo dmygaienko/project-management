@@ -3,12 +3,13 @@ package com.mygaienko.pmgmt.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.context.Context;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.ScreensFramework;
-import com.mygaienko.pmgmt.service.ExecutorService;
+import com.mygaienko.pmgmt.service.interfaces.ExecutorService;
 import com.mygaienko.pmgmt.service.ExecutorServiceImpl;
 
 import javafx.collections.FXCollections;

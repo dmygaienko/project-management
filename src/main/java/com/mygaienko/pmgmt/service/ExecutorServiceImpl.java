@@ -2,10 +2,10 @@ package com.mygaienko.pmgmt.service;
 
 import java.util.List;
 
-import com.mygaienko.pmgmt.dao.ExecutorDao;
+import com.mygaienko.pmgmt.dao.interfaces.ExecutorDao;
 import com.mygaienko.pmgmt.dao.ExecutorDaoImpl;
 import com.mygaienko.pmgmt.model.Executor;
-import com.mygaienko.pmgmt.model.Task;
+import com.mygaienko.pmgmt.service.interfaces.ExecutorService;
 
 public class ExecutorServiceImpl implements ExecutorService {
 	private static ExecutorServiceImpl instance;
