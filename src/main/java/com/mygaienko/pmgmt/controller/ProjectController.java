@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
 public class ProjectController implements Initializable, Screenable {
 	private ProjectService projectSvc = ProjectServiceImpl.getInstance(); 
 	private Project selectedProject;
-	ScreensMediator myController;
+	private ScreensMediator mediator;
 
 	@FXML
 	TextField nameId;
@@ -74,22 +74,22 @@ public class ProjectController implements Initializable, Screenable {
 	}
 	
 	public void setScreenParent(ScreensMediator screenParent) {
-		myController = screenParent;
+		mediator = screenParent;
 	}
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		myController.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(ScreensFramework.loginScreen);
 	}
 
 	@FXML
 	private void goToProjects(ActionEvent event) {
-		myController.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(ScreensFramework.projectsScreen);
 	}
 
 	@FXML
 	private void goToTasks(ActionEvent event) {
-		myController.setScreen(ScreensFramework.tasksScreen);
+		mediator.setScreen(ScreensFramework.tasksScreen);
 	}
 
 	@FXML
@@ -98,7 +98,7 @@ public class ProjectController implements Initializable, Screenable {
 		selectedProject.setDesription(descriptionId.getText());
 		selectedProject.setStartDate(new DateTime(startDateId.getText()));
 		selectedProject.setEndDate(new DateTime(endDateId.getText()));
-		myController.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(ScreensFramework.projectsScreen);
 		
 		projectSvc.merge(selectedProject);
 	}
@@ -114,9 +114,9 @@ public class ProjectController implements Initializable, Screenable {
 		projectSvc.persist(project);
 
 		// add project to observable list
-		((ProjectsController) myController
+		((ProjectsController) mediator
 				.getController((ScreensFramework.projectsScreen)))
 				.addProject(project);
-		myController.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(ScreensFramework.projectsScreen);
 	}
 }

@@ -37,7 +37,7 @@ public class ProjectsController implements Initializable, Screenable {
 	private ObservableList<Project> obsProjects = FXCollections
 			.observableArrayList();
 
-	ScreensMediator myController;
+	private ScreensMediator mediator;
 
 	@FXML
 	ListView projectsView;
@@ -72,18 +72,18 @@ public class ProjectsController implements Initializable, Screenable {
 	}
 
 	public void setScreenParent(ScreensMediator screenParent) {
-		myController = screenParent;
+		mediator = screenParent;
 	}
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		myController.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(ScreensFramework.loginScreen);
 	}
 
 	@FXML
 	private void goToNewProjectScreen(ActionEvent event) {
 		Context.delete(Context.SELECTED_PROJECT);
-		myController.setScreen(ScreensFramework.projectScreen);
+		mediator.setScreen(ScreensFramework.projectScreen);
 	}	
 
 	@FXML
@@ -94,7 +94,7 @@ public class ProjectsController implements Initializable, Screenable {
 		deleteProjectBut.setDisable(false);
 		if (mouseEvent.getClickCount() == 2) {
 			System.out.println("2 clicks");			
-			myController.setScreen(ScreensFramework.projectScreen);	
+			mediator.setScreen(ScreensFramework.projectScreen);
 		} else if (mouseEvent.getClickCount() == 1) {	
 			if (selectedProject == null) return;
 			String description = selectedProject.getDesription();

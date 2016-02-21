@@ -62,6 +62,6 @@ public class LoginController implements Initializable, Screenable {
 
 //	@FXML
 //	private void registrate(ActionEvent event) {
-//		myController.setScreen(ScreensFramework.projectScreen);
+//		mediator.setScreen(ScreensFramework.projectScreen);
 //	}
 }

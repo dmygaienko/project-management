@@ -2,6 +2,7 @@ package com.mygaienko.pmgmt.service.interfaces;
 
 import java.util.List;
 
+import com.mygaienko.pmgmt.model.AttachedFile;
 import com.mygaienko.pmgmt.model.Task;
 
 public interface TaskService {
@@ -13,4 +14,6 @@ public interface TaskService {
 	void persist(Task task);
 
 	List<Task> getAllTasks();
+
+	void attachFile(AttachedFile file);
 }

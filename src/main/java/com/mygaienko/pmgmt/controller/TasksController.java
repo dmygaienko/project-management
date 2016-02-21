@@ -1,11 +1,13 @@
 package com.mygaienko.pmgmt.controller;
 
+import java.io.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
+import com.mygaienko.pmgmt.model.AttachedFile;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
@@ -33,18 +35,27 @@ import javafx.scene.input.MouseEvent;
  * @author Angie
  */
 public class TasksController implements Initializable, Screenable {
-	private TaskService taskSvc = TaskServiceImpl.getInstance(); 
-	private Project selectedProject;
-	private Task selectedTask;
+	private TaskService taskService = TaskServiceImpl.getInstance();
+
 	private ObservableList<Task> obsTasks = FXCollections.observableArrayList();
 	private ObservableList<Executor> obsExecutors;
-	ScreensMediator myController;
+	private ObservableList<AttachedFile> obsFiles = FXCollections.observableArrayList();
+
+
+	private Project selectedProject;
+	private Task selectedTask;
+	private AttachedFile selectedFile;
+
+	private ScreensMediator mediator;
 	
 	@FXML
 	ListView<Task> tasksView;
 
 	@FXML
 	ListView<Executor> executorsView;
+
+	@FXML
+	ListView<AttachedFile> attachedFilesView;
 
 	@FXML
 	Label projectId;
@@ -88,7 +99,7 @@ public class TasksController implements Initializable, Screenable {
 	}
 
 	public void setScreenParent(ScreensMediator screenParent) {
-		myController = screenParent;
+		mediator = screenParent;
 
 	}
 
@@ -114,7 +125,7 @@ public class TasksController implements Initializable, Screenable {
 		obsTasks.add(newTask);
 		selectedProject.addTask(newTask);
 		
-		taskSvc.persist(newTask);
+		taskService.persist(newTask);
 		
 		tasksView.getSelectionModel().select(newTask);
 		Context.put(Context.SELECTED_TASK, newTask);
@@ -128,7 +139,7 @@ public class TasksController implements Initializable, Screenable {
 		selectedProject.deleteTask(selectedTask);
 		
 		List<Executor> executors = selectedTask.getExecutors();
-		taskSvc.deleteTask(selectedTask);
+		taskService.deleteTask(selectedTask);
 		Context.delete(Context.SELECTED_TASK);
 		if (obsExecutors != null) {
 			obsExecutors.clear();
@@ -138,17 +149,17 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	private void goToExecutors(ActionEvent event) {
-		myController.setScreen(ScreensFramework.executorsScreen);
+		mediator.setScreen(ScreensFramework.executorsScreen);
 	}
 
 	@FXML
 	private void goToProject(ActionEvent event) {
-		myController.setScreen(ScreensFramework.projectScreen);
+		mediator.setScreen(ScreensFramework.projectScreen);
 	}
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		myController.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(ScreensFramework.loginScreen);
 	}
 
 	@FXML
@@ -159,11 +170,59 @@ public class TasksController implements Initializable, Screenable {
 		deleteTaskBut.setDisable(false);
 		Context.put(Context.SELECTED_TASK, selectedTask);
 		setSldProjProperties();
+		fillExecutorsView();
+		fillAttachedFilesView();
+	}
+
+	private void fillAttachedFilesView() {
+		if (selectedTask.getAttachedFiles() != null) {
+			obsFiles = FXCollections
+					.observableArrayList(selectedTask.getAttachedFiles());
+			attachedFilesView.setItems(obsFiles);
+		}
+	}
+
+	private void fillExecutorsView() {
 		if (selectedTask.getExecutors() != null) {
 			obsExecutors = FXCollections
 					.observableArrayList(selectedTask.getExecutors());
 			executorsView.setItems(obsExecutors);
 		}
+	}
+
+	@FXML
+	private void selectFile(MouseEvent event) {
+		selectedFile = (AttachedFile) attachedFilesView.getSelectionModel().getSelectedItem();
+	}
+
+	@FXML
+	private void attachFile(ActionEvent event) throws IOException {
+		if (selectedTask == null) return;
+
+		File file = mediator.showOpenDialog();
+		FileInputStream inputStream = new FileInputStream(file);
+		byte[] fileData = new byte[(int) file.length()];
+		inputStream.read(fileData);
+		inputStream.close();
+
+		taskService.attachFile(new AttachedFile(fileData, file.getName(), selectedTask));
+	}
+
+	@FXML
+	private void downloadFile(ActionEvent event) throws IOException {
+		selectedFile = (AttachedFile) attachedFilesView.getSelectionModel().getSelectedItem();
+		if (selectedFile == null) return;
+
+		File file = mediator.showSaveDialog();
+
+		FileOutputStream writer = new FileOutputStream(file);
+		writer.write(selectedFile.getData());
+		writer.close();
+	}
+
+	@FXML
+	private void deleteFile(ActionEvent event) throws IOException {
+
 	}
 
 	private void setSldProjProperties() {

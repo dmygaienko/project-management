@@ -27,8 +27,8 @@ public class ExecutorsController implements Initializable, Screenable {
 	private Task selectedTask;
 	private Executor selectedExecutor;
 	private ObservableList<Executor> obsExecutors = FXCollections.observableArrayList();
-	private ObservableList<Task> obsTasks = FXCollections.observableArrayList(); 
-	ScreensMediator myController;
+	private ObservableList<Task> obsTasks = FXCollections.observableArrayList();
+	private ScreensMediator mediator;
 
 	@FXML
 	ListView<Executor> executorsView;
@@ -53,7 +53,7 @@ public class ExecutorsController implements Initializable, Screenable {
 	
 	@Override
 	public void setScreenParent(ScreensMediator screenParent) {
-		myController = screenParent;
+		mediator = screenParent;
 	}
 
 	@Override
@@ -133,11 +133,11 @@ public class ExecutorsController implements Initializable, Screenable {
 	
 	@FXML
 	private void goToTasks(ActionEvent event) {
-		myController.setScreen(ScreensFramework.tasksScreen);
+		mediator.setScreen(ScreensFramework.tasksScreen);
 	}
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		myController.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(ScreensFramework.loginScreen);
 	}
 }

@@ -1,5 +1,6 @@
 package com.mygaienko.pmgmt.screenframework;
 
+import java.io.File;
 import java.util.HashMap;
 
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
@@ -13,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -20,15 +23,18 @@ import javafx.util.Duration;
  * @author dmygaien
  */
 public class ScreensMediator extends StackPane {
+    private Stage primaryStage;
+
     //Holds the screens to be displayed
 
     private HashMap<String, Node> screens = new HashMap<>();
     private HashMap<String, Screenable> controllers = new HashMap<>();
     
     
-    public ScreensMediator() {
+    public ScreensMediator(Stage primaryStage) {
         super();   
         this.setMinSize(0, 0);
+        this.primaryStage = primaryStage;
     }
 
     //Add the screen to the collection
@@ -111,5 +117,15 @@ public class ScreensMediator extends StackPane {
         } else {
             return true;
         }
+    }
+
+    public File showOpenDialog() {
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showOpenDialog(primaryStage);
+    }
+
+    public File showSaveDialog() {
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showSaveDialog(primaryStage);
     }
 }

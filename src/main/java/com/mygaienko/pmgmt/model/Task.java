@@ -1,15 +1,9 @@
 package com.mygaienko.pmgmt.model;
 
+import java.io.File;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -43,6 +37,9 @@ public class Task {
 	        targetEntity = Executor.class
 	    )
 	private List<Executor> executors;
+
+	@OneToMany(mappedBy = "task")
+	private List<AttachedFile> attachedFiles;
 	
 	public String getName() {
 		return name;
@@ -100,5 +97,13 @@ public class Task {
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public List<AttachedFile> getAttachedFiles() {
+		return attachedFiles;
+	}
+
+	public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+		this.attachedFiles = attachedFiles;
 	}
 }

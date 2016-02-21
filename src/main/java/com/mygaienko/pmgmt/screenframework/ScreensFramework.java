@@ -26,7 +26,7 @@ public class ScreensFramework extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        ScreensMediator mainContainer = new ScreensMediator();
+        ScreensMediator mainContainer = new ScreensMediator(primaryStage);
         //load all screens
         mainContainer.loadScreen(ScreensFramework.loginScreen, ScreensFramework.loginScreenFile);
         mainContainer.loadScreen(ScreensFramework.projectsScreen, ScreensFramework.projectsFile);
@@ -44,7 +44,7 @@ public class ScreensFramework extends Application {
         scene.getStylesheets().add("/styles/styles.css");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+
     }
 
 	/**
