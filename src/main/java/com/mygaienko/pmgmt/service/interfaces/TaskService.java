@@ -13,7 +13,13 @@ public interface TaskService {
 	
 	void persist(Task task);
 
+	void merge(Task task);
+
+	void refresh(Task task);
+
 	List<Task> getAllTasks();
 
 	void attachFile(AttachedFile file);
+
+	void deleteFile(AttachedFile file);
 }

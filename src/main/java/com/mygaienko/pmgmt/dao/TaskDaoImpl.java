@@ -32,6 +32,18 @@ public class TaskDaoImpl implements TaskDao {
 		eM.persist(task);
 		eM.getTransaction().commit();
 	}
+
+	@Override
+	public void merge(Task task) {
+		eM.getTransaction().begin();
+		eM.merge(task);
+		eM.getTransaction().commit();
+	}
+
+	@Override
+	public void refresh(Task task) {
+		eM.refresh(task);
+	}
 	
 	@Override
 	public List<Task> getAllTasks() {

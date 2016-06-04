@@ -2,14 +2,13 @@ package com.mygaienko.pmgmt.controller;
 
 import java.io.*;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.model.AttachedFile;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
-import com.mygaienko.pmgmt.screenframework.ScreensFramework;
+import com.mygaienko.pmgmt.screenframework.Main;
 import org.joda.time.DateTime;
 
 import com.mygaienko.pmgmt.model.Executor;
@@ -37,9 +36,9 @@ import javafx.scene.input.MouseEvent;
 public class TasksController implements Initializable, Screenable {
 	private TaskService taskService = TaskServiceImpl.getInstance();
 
-	private ObservableList<Task> obsTasks = FXCollections.observableArrayList();
-	private ObservableList<Executor> obsExecutors;
-	private ObservableList<AttachedFile> obsFiles = FXCollections.observableArrayList();
+	private ObservableList<Task> tasksObservable = FXCollections.observableArrayList();
+	private ObservableList<Executor> executorsObservable = FXCollections.observableArrayList();
+	private ObservableList<AttachedFile> filesObservable = FXCollections.observableArrayList();
 
 
 	private Project selectedProject;
@@ -49,13 +48,13 @@ public class TasksController implements Initializable, Screenable {
 	private ScreensMediator mediator;
 	
 	@FXML
-	ListView<Task> tasksView;
+	ListView<Task> tasksListView;
 
 	@FXML
-	ListView<Executor> executorsView;
+	ListView<Executor> executorsListView;
 
 	@FXML
-	ListView<AttachedFile> attachedFilesView;
+	ListView<AttachedFile> filesListView;
 
 	@FXML
 	Label projectId;
@@ -80,38 +79,42 @@ public class TasksController implements Initializable, Screenable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+		tasksListView.setItems(tasksObservable);
 	}
 
 	@Override
 	public void initScreen() {
 		selectedProject = (Project) Context.get(Context.SELECTED_PROJECT);
-		obsTasks.clear();
-		obsTasks.addAll(selectedProject.getTasks());
-		tasksView.setItems(obsTasks);
+		executorsObservable.clear();
+		refreshTasksObservable();
+
 		if (selectedTask == null) {
 			saveTaskChangesBut.setDisable(true);
 			deleteTaskBut.setDisable(true);
-		}
-		if (obsExecutors!= null){
-			obsExecutors.clear();
 		}
 	}
 
 	public void setScreenParent(ScreensMediator screenParent) {
 		mediator = screenParent;
-
 	}
 
 	@FXML
 	private void saveTaskChanges(ActionEvent event) {
-		selectedTask = (Task) tasksView.getSelectionModel().getSelectedItem();
+		selectedTask = tasksListView.getSelectionModel().getSelectedItem();
 		if (selectedTask == null) return;
-		obsTasks.remove(selectedTask);
+		//tasksObservable.remove(selectedTask);
 		selectedTask.setDescription(descriptionId.getText());
 		selectedTask.setStartDate(new DateTime(startDateId.getText()));
 		selectedTask.setEndDate(new DateTime(endDateId.getText()));
-		obsTasks.add(selectedTask);
+		//tasksObservable.add(selectedTask);
+
+		taskService.merge(selectedTask);
+		refreshTasksObservable();
+	}
+
+	private void refreshTasksObservable() {
+		tasksObservable.clear();
+		tasksObservable.addAll(selectedProject.getTasks());
 	}
 
 	@FXML
@@ -122,77 +125,83 @@ public class TasksController implements Initializable, Screenable {
 		newTask.setEndDate(new DateTime(endDateId.getText()));
 		newTask.setProject(selectedProject);
 		
-		obsTasks.add(newTask);
+		tasksObservable.add(newTask);
 		selectedProject.addTask(newTask);
 		
 		taskService.persist(newTask);
 		
-		tasksView.getSelectionModel().select(newTask);
+		tasksListView.getSelectionModel().select(newTask);
 		Context.put(Context.SELECTED_TASK, newTask);
 	}
 
 	@FXML
 	private void deleteTask(ActionEvent event) {
-		selectedTask = (Task) tasksView.getSelectionModel().getSelectedItem();
+		selectedTask = tasksListView.getSelectionModel().getSelectedItem();
 		if (selectedTask == null) return;
-		obsTasks.remove(selectedTask);
+		tasksObservable.remove(selectedTask);
 		selectedProject.deleteTask(selectedTask);
 		
-		List<Executor> executors = selectedTask.getExecutors();
 		taskService.deleteTask(selectedTask);
 		Context.delete(Context.SELECTED_TASK);
-		if (obsExecutors != null) {
-			obsExecutors.clear();
+		if (executorsObservable != null) {
+			executorsObservable.clear();
 		}
 		
 	}
 
 	@FXML
 	private void goToExecutors(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.executorsScreen);
+		mediator.setScreen(Main.executorsScreen);
 	}
 
 	@FXML
 	private void goToProject(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.projectScreen);
+		mediator.setScreen(Main.projectScreen);
 	}
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(Main.loginScreen);
 	}
 
 	@FXML
 	private void selectTask(MouseEvent event) {
-		selectedTask = (Task) tasksView.getSelectionModel().getSelectedItem();
+		selectedTask = (Task) tasksListView.getSelectionModel().getSelectedItem();
 		if (selectedTask == null) return;
+		taskService.refresh(selectedTask);
+
 		saveTaskChangesBut.setDisable(false);
 		deleteTaskBut.setDisable(false);
 		Context.put(Context.SELECTED_TASK, selectedTask);
-		setSldProjProperties();
+
+		setSelectedProjectProperties();
 		fillExecutorsView();
+		fillAttachedFilesView();
+	}
+
+	private void refreshAttachedFilesView() {
+		taskService.refresh(selectedTask);
 		fillAttachedFilesView();
 	}
 
 	private void fillAttachedFilesView() {
 		if (selectedTask.getAttachedFiles() != null) {
-			obsFiles = FXCollections
-					.observableArrayList(selectedTask.getAttachedFiles());
-			attachedFilesView.setItems(obsFiles);
+			filesObservable = FXCollections.observableArrayList(selectedTask.getAttachedFiles());
+			filesListView.setItems(filesObservable);
 		}
 	}
 
 	private void fillExecutorsView() {
 		if (selectedTask.getExecutors() != null) {
-			obsExecutors = FXCollections
+			executorsObservable = FXCollections
 					.observableArrayList(selectedTask.getExecutors());
-			executorsView.setItems(obsExecutors);
+			executorsListView.setItems(executorsObservable);
 		}
 	}
 
 	@FXML
 	private void selectFile(MouseEvent event) {
-		selectedFile = (AttachedFile) attachedFilesView.getSelectionModel().getSelectedItem();
+		selectedFile = (AttachedFile) filesListView.getSelectionModel().getSelectedItem();
 	}
 
 	@FXML
@@ -200,17 +209,20 @@ public class TasksController implements Initializable, Screenable {
 		if (selectedTask == null) return;
 
 		File file = mediator.showOpenDialog();
-		FileInputStream inputStream = new FileInputStream(file);
+		BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+		/*FileInputStream inputStream = new FileInputStream(file);*/
 		byte[] fileData = new byte[(int) file.length()];
 		inputStream.read(fileData);
 		inputStream.close();
 
 		taskService.attachFile(new AttachedFile(fileData, file.getName(), selectedTask));
+
+		refreshAttachedFilesView();
 	}
 
 	@FXML
 	private void downloadFile(ActionEvent event) throws IOException {
-		selectedFile = (AttachedFile) attachedFilesView.getSelectionModel().getSelectedItem();
+		selectedFile = filesListView.getSelectionModel().getSelectedItem();
 		if (selectedFile == null) return;
 
 		File file = mediator.showSaveDialog();
@@ -222,10 +234,13 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	private void deleteFile(ActionEvent event) throws IOException {
+		selectedFile = filesListView.getSelectionModel().getSelectedItem();
+		if (selectedFile == null) return;
 
+		taskService.deleteFile(selectedFile);
 	}
 
-	private void setSldProjProperties() {
+	private void setSelectedProjectProperties() {
 		projectId.setText(selectedProject.getName());
 		descriptionId.setText(selectedTask.getDescription());
 		startDateId.setText(selectedTask.getStartDate().toString("yy-MM-dd"));

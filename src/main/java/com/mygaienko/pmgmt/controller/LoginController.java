@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
-import com.mygaienko.pmgmt.screenframework.ScreensFramework;
+import com.mygaienko.pmgmt.screenframework.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +48,7 @@ public class LoginController implements Initializable, Screenable {
 		if (!authenticate()) {
 			errorMessage.setText("wrong name/password");
 		} else {
-			myController.setScreen(ScreensFramework.projectsScreen);
+			myController.setScreen(Main.projectsScreen);
 		}
 		
 	}
@@ -62,6 +62,6 @@ public class LoginController implements Initializable, Screenable {
 
 //	@FXML
 //	private void registrate(ActionEvent event) {
-//		mediator.setScreen(ScreensFramework.projectScreen);
+//		mediator.setScreen(Main.projectScreen);
 //	}
 }

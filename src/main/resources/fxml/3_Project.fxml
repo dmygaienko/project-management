@@ -38,8 +38,8 @@
     </GridPane>
     <Button layoutX="562.0" layoutY="15.0" mnemonicParsing="false" onAction="#logoff" text="X" />
     <Button layoutX="20.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToProjects" prefHeight="25.0" prefWidth="200.0" text="&lt;&lt;&lt; Go to Projects" />
-    <Button fx:id="saveChanges" layoutX="123.0" layoutY="223.0" mnemonicParsing="false" onAction="#saveChanges" text="Save changes" />
-    <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#createNewProject" text="Create new project" />
+    <Button fx:id="saveChanges" layoutX="123.0" layoutY="223.0" mnemonicParsing="false" onAction="#saveChanges" text="Save changes" styleClass="modify-button"/>
+    <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#createNewProject" text="Create new project" styleClass="new-button"/>
     <Button fx:id="goToTasks" layoutX="386.0" layoutY="405.0" mnemonicParsing="false" onAction="#goToTasks" prefHeight="25.0" prefWidth="200.0" text="Go to current Tasks &gt;&gt;&gt;" />
   </children>
 </AnchorPane>

@@ -36,17 +36,17 @@
     <Button layoutX="683.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoff" text="X" />
     <Button layoutX="20.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="17.0" prefWidth="201.0" text="&lt;&lt;&lt; Go To Project" />
     <Label id="taskId" fx:id="projectId" layoutX="106.0" layoutY="21.0" text="Label" />
-    <ListView id="tasksId" fx:id="tasksView" layoutX="23.0" layoutY="48.0" onMouseClicked="#selectTask" prefHeight="159.0" prefWidth="195.0" />
-    <ListView fx:id="executorsView" layoutX="470.0" layoutY="317.0" prefHeight="114.00009999999747" prefWidth="195.0" />
-    <Label layoutX="470.0" layoutY="291.0" prefWidth="69.0" text="Executors" />
-    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="504.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="88.0" text="Delete task" />
-    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" />
-    <Button layoutX="298.0" layoutY="158.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" />
+    <ListView id="tasksId" fx:id="tasksListView" layoutX="23.0" layoutY="48.0" onMouseClicked="#selectTask" prefHeight="159.0" prefWidth="195.0" />
+    <ListView fx:id="executorsListView" layoutX="418.0" layoutY="317.0" prefHeight="115.0" prefWidth="284.0" />
+    <Label layoutX="418.0" layoutY="291.0" prefWidth="69.0" text="Executors" />
+    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="504.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="88.0" text="Delete task" styleClass="delete-button"/>
+    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" styleClass="modify-button"/>
+    <Button layoutX="298.0" layoutY="158.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" styleClass="new-button"/>
     <Button layoutX="505.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToExecutors" prefHeight="16.0" prefWidth="201.0" text="Go To Executors &gt;&gt;&gt;" />
       <Button layoutX="22.0" layoutY="449.0" mnemonicParsing="false" onAction="#attachFile" prefHeight="25.0" prefWidth="83.0" text="attach file" />
       <Label layoutX="23.0" layoutY="291.0" prefWidth="69.0" text="Files" />
-      <ListView fx:id="attachedFilesView" layoutX="23.0" layoutY="317.0" onMouseClicked="#selectFile" prefHeight="114.00009999999747" prefWidth="195.0" />
-      <Button layoutX="221.0" layoutY="449.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="25.0" prefWidth="83.0" text="delete file" />
+      <ListView fx:id="filesListView" layoutX="23.0" layoutY="317.0" onMouseClicked="#selectFile" prefHeight="114.00009999999747" prefWidth="195.0" />
+      <Button layoutX="221.0" layoutY="449.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="25.0" prefWidth="83.0" text="delete file" styleClass="delete-button"/>
       <Button layoutX="120.0" layoutY="449.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="25.0" prefWidth="83.0" text="download" />
   </children>
 </AnchorPane>

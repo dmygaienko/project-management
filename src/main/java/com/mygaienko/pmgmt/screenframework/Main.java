@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  *
  * @author dmygaien
  */
-public class ScreensFramework extends Application {
+public class Main extends Application {
     
     public static String loginScreen = "mainScreen";
     public static String loginScreenFile = "/fxml/1_Login.fxml";
@@ -28,14 +28,14 @@ public class ScreensFramework extends Application {
         
         ScreensMediator mainContainer = new ScreensMediator(primaryStage);
         //load all screens
-        mainContainer.loadScreen(ScreensFramework.loginScreen, ScreensFramework.loginScreenFile);
-        mainContainer.loadScreen(ScreensFramework.projectsScreen, ScreensFramework.projectsFile);
-        mainContainer.loadScreen(ScreensFramework.projectScreen, ScreensFramework.projectFile);
-        mainContainer.loadScreen(ScreensFramework.tasksScreen, ScreensFramework.tasksFile);
-        mainContainer.loadScreen(ScreensFramework.executorsScreen, ScreensFramework.executorsFile);
+        mainContainer.loadScreen(Main.loginScreen, Main.loginScreenFile);
+        mainContainer.loadScreen(Main.projectsScreen, Main.projectsFile);
+        mainContainer.loadScreen(Main.projectScreen, Main.projectFile);
+        mainContainer.loadScreen(Main.tasksScreen, Main.tasksFile);
+        mainContainer.loadScreen(Main.executorsScreen, Main.executorsFile);
         
         //set first main screen
-        mainContainer.setScreen(ScreensFramework.loginScreen);   
+        mainContainer.setScreen(Main.loginScreen);
         
         AnchorPane root = new AnchorPane();
         root.getStyleClass().add("main-panel");

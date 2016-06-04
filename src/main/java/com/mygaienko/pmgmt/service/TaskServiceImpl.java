@@ -39,6 +39,14 @@ public class TaskServiceImpl implements TaskService {
 		taskDao.persist(task);
 	}
 
+	public void merge(Task task){
+		taskDao.merge(task);
+	}
+
+	public void refresh(Task task){
+		taskDao.refresh(task);
+	}
+
 	public List<Task> getAllTasks(){
 		return taskDao.getAllTasks();
 	}
@@ -48,5 +56,9 @@ public class TaskServiceImpl implements TaskService {
 		fileDao.persist(file);
 	}
 
+	@Override
+	public void deleteFile(AttachedFile file) {
+		fileDao.delete(file);
+	}
 
 }

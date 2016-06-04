@@ -14,12 +14,12 @@
         <Font size="18.0" />
       </font>
     </Label>
-    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="269.0" layoutY="53.0" pickOnBounds="false" prefHeight="88.0" prefWidth="213.0">
+    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="235.0" layoutY="49.0" pickOnBounds="false" prefHeight="92.0" prefWidth="323.0">
       <children>
         <Label minHeight="13.999908447265625" prefHeight="13.999908447265625" prefWidth="69.0" text="First name" />
         <Label text="Last name" GridPane.rowIndex="1" />
-        <TextField id="fisrtName" fx:id="firstNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <TextField id="lastName" fx:id="lastNameId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField id="fisrtName" fx:id="firstNameText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField id="lastName" fx:id="lastNameText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,12 +32,12 @@
     </GridPane>
     <Button layoutX="549.0" layoutY="15.0" mnemonicParsing="false" onAction="#logoff" text="X" />
     <Button layoutX="21.0" layoutY="421.0" mnemonicParsing="false" onAction="#goToTasks" prefHeight="25.0" prefWidth="200.0" text="&lt;&lt;&lt; Go To Tasks" />
-    <ListView fx:id="executorsView" layoutX="21.0" layoutY="53.0" onMouseClicked="#handleExecutorSelection" prefHeight="301.0" prefWidth="189.0" />
+    <ListView fx:id="executorListView" layoutX="21.0" layoutY="53.0" onMouseClicked="#selectExecutor" prefHeight="301.0" prefWidth="189.0" />
     <Button fx:id="appointForTaskBut" layoutX="228.0" layoutY="365.0" mnemonicParsing="false" onAction="#appointForTask" text="Appoint for task" />
-    <Button fx:id="deleteExecutorBut" layoutX="426.0" layoutY="132.0" mnemonicParsing="false" onAction="#deleteExecutor" prefHeight="25.0" prefWidth="94.0" text="delete executor" />
-    <ListView fx:id="tasksView" layoutX="226.0" layoutY="241.0" prefHeight="112.9998779296875" prefWidth="231.0" />
+    <Button fx:id="deleteExecutorBut" layoutX="453.0" layoutY="132.0" mnemonicParsing="false" onAction="#deleteExecutor" prefHeight="25.0" prefWidth="111.0" text="delete executor" textFill="#ee0a0a" styleClass="delete-button"/>
+    <ListView fx:id="tasksListView" layoutX="226.0" layoutY="241.0" prefHeight="113.0" prefWidth="338.0" />
     <Label layoutX="226.0" layoutY="219.0" text="Tasks" />
-    <Button layoutX="236.0" layoutY="132.0" mnemonicParsing="false" onAction="#createNewExecutor" prefHeight="17.0" prefWidth="87.0" text="new executor" />
-    <Button fx:id="saveChangesBut" layoutX="332.0" layoutY="132.0" mnemonicParsing="false" onAction="#saveChanges" text="save changes" />
+    <Button layoutX="229.0" layoutY="132.0" mnemonicParsing="false" onAction="#createNewExecutor" prefHeight="25.0" prefWidth="102.0" styleClass="new-button" text="new executor"/>
+    <Button fx:id="saveChangesBut" layoutX="340.0" layoutY="132.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="25.0" prefWidth="102.0" styleClass="modify-button" text="save changes" />
   </children>
 </AnchorPane>

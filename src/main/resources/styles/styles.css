@@ -15,12 +15,32 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
+.new-button {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-style: bold;
+}
+
+.modify-button {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-style: normal;
+}
+
+.delete-button {
+    -fx-background-color: firebrick;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-style: bold;
+}
+
 .button:hover{
     -fx-base: #395bae;
 }
 
 /* Component specific styles */
-
 
 .main-panel {
     -fx-background-image: url("../images/background.jpg");

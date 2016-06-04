@@ -79,17 +79,17 @@ public class ProjectController implements Initializable, Screenable {
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(Main.loginScreen);
 	}
 
 	@FXML
 	private void goToProjects(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(Main.projectsScreen);
 	}
 
 	@FXML
 	private void goToTasks(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.tasksScreen);
+		mediator.setScreen(Main.tasksScreen);
 	}
 
 	@FXML
@@ -98,7 +98,7 @@ public class ProjectController implements Initializable, Screenable {
 		selectedProject.setDesription(descriptionId.getText());
 		selectedProject.setStartDate(new DateTime(startDateId.getText()));
 		selectedProject.setEndDate(new DateTime(endDateId.getText()));
-		mediator.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(Main.projectsScreen);
 		
 		projectSvc.merge(selectedProject);
 	}
@@ -115,8 +115,8 @@ public class ProjectController implements Initializable, Screenable {
 
 		// add project to observable list
 		((ProjectsController) mediator
-				.getController((ScreensFramework.projectsScreen)))
+				.getController((Main.projectsScreen)))
 				.addProject(project);
-		mediator.setScreen(ScreensFramework.projectsScreen);
+		mediator.setScreen(Main.projectsScreen);
 	}
 }

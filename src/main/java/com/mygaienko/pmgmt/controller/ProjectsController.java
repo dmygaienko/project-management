@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
+import com.mygaienko.pmgmt.screenframework.Main;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
-import com.mygaienko.pmgmt.screenframework.ScreensFramework;
 import org.joda.time.DateTime;
 
 import javafx.collections.FXCollections;
@@ -77,24 +77,24 @@ public class ProjectsController implements Initializable, Screenable {
 
 	@FXML
 	private void logoff(ActionEvent event) {
-		mediator.setScreen(ScreensFramework.loginScreen);
+		mediator.setScreen(Main.loginScreen);
 	}
 
 	@FXML
 	private void goToNewProjectScreen(ActionEvent event) {
 		Context.delete(Context.SELECTED_PROJECT);
-		mediator.setScreen(ScreensFramework.projectScreen);
+		mediator.setScreen(Main.projectScreen);
 	}	
 
 	@FXML
-	private void handleProjectSelection(MouseEvent mouseEvent) {
+	private void selectProject(MouseEvent mouseEvent) {
 		selectedProject = (Project) projectsView
 				.getSelectionModel().getSelectedItem();
 		Context.put(Context.SELECTED_PROJECT, selectedProject);
 		deleteProjectBut.setDisable(false);
 		if (mouseEvent.getClickCount() == 2) {
 			System.out.println("2 clicks");			
-			mediator.setScreen(ScreensFramework.projectScreen);
+			mediator.setScreen(Main.projectScreen);
 		} else if (mouseEvent.getClickCount() == 1) {	
 			if (selectedProject == null) return;
 			String description = selectedProject.getDesription();
