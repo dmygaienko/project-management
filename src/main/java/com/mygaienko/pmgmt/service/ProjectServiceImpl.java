@@ -23,7 +23,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Override
 	public void deleteProject(Project project) {
-		pDao.deleteProject(project);
+		pDao.delete(project);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project getProjectById(int id) {
-		return pDao.getProjectById(id);
+		return pDao.getById(id);
 	}
 	
 	@Override

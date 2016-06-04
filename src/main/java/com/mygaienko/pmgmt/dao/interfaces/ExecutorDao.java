@@ -5,15 +5,15 @@ import java.util.List;
 import com.mygaienko.pmgmt.model.Executor;
 import com.mygaienko.pmgmt.model.Task;
 
-public interface ExecutorDao {
+public interface ExecutorDao extends Dao<Executor> {
 	
-	Executor getExecutorById(int id);
+	Executor getById(int id);
 	
 	Executor getExecutorByLastName(String lastName);
 	
-	List<Executor> getAllExecutors();
+	List<Executor> getAll();
 	
-	void deleteExecutor(Executor executor);
+	void delete(Executor executor);
 	
 	void persist(Executor executor);
 

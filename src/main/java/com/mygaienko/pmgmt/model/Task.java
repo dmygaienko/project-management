@@ -1,11 +1,9 @@
 package com.mygaienko.pmgmt.model;
 
-import java.io.File;
 import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
@@ -17,6 +15,10 @@ public class Task {
 	
 	@Column(name="name")
 	private String name;
+
+	@Column(name="status")
+	@Enumerated(EnumType.ORDINAL)
+	private TaskStatus status;
 	
 	@Column(name="description")
 	private String description;
@@ -51,6 +53,18 @@ public class Task {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public TaskStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TaskStatus status) {
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -88,7 +102,7 @@ public class Task {
 	
 	@Override
 	public String toString(){
-		return description;
+		return description + " - " + (status == null ? "" : status.name());
 	}
 
 	public Project getProject() {

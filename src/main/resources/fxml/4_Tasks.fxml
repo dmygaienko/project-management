@@ -7,21 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="594.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.TasksController">
+<AnchorPane id="AnchorPane" minWidth="174.0" prefHeight="660.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygaienko.pmgmt.controller.TasksController">
   <children>
     <Label layoutX="23.0" layoutY="18.0" prefWidth="83.0" text="Tasks for">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
-    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="306.0" layoutY="57.0" pickOnBounds="false" prefHeight="87.0" prefWidth="241.0">
+    <GridPane cache="false" gridLinesVisible="false" hgap="0.0" layoutX="245.0" layoutY="48.0" pickOnBounds="false" prefHeight="115.0" prefWidth="366.0">
       <children>
         <Label minHeight="13.999908447265625" prefHeight="15.999908447265625" prefWidth="69.0" text="Description" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <Label text="Start Date" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Label text="End Date" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label text="End Date" GridPane.rowIndex="2" />
         <TextField fx:id="descriptionId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <TextField fx:id="startDateId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <TextField fx:id="endDateId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Status" GridPane.rowIndex="3" />
+            <ComboBox fx:id="statusComboBox" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,22 +33,33 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="683.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoff" text="X" />
-    <Button layoutX="20.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="17.0" prefWidth="201.0" text="&lt;&lt;&lt; Go To Project" />
+    <Button layoutX="708.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoff" text="X" />
+    <Button layoutX="20.0" layoutY="605.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="17.0" prefWidth="201.0" text="&lt;&lt;&lt; Go To Project" />
     <Label id="taskId" fx:id="projectId" layoutX="106.0" layoutY="21.0" text="Label" />
     <ListView id="tasksId" fx:id="tasksListView" layoutX="23.0" layoutY="48.0" onMouseClicked="#selectTask" prefHeight="159.0" prefWidth="195.0" />
-    <ListView fx:id="executorsListView" layoutX="418.0" layoutY="317.0" prefHeight="115.0" prefWidth="284.0" />
-    <Label layoutX="418.0" layoutY="291.0" prefWidth="69.0" text="Executors" />
-    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="504.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="88.0" text="Delete task" styleClass="delete-button"/>
-    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#saveTaskChanges" text="Save changes" styleClass="modify-button"/>
-    <Button layoutX="298.0" layoutY="158.0" mnemonicParsing="false" onAction="#createNewTask" text="Create new task" styleClass="new-button"/>
-    <Button layoutX="505.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToExecutors" prefHeight="16.0" prefWidth="201.0" text="Go To Executors &gt;&gt;&gt;" />
-      <Button layoutX="22.0" layoutY="449.0" mnemonicParsing="false" onAction="#attachFile" prefHeight="25.0" prefWidth="83.0" text="attach file" />
-      <Label layoutX="23.0" layoutY="291.0" prefWidth="69.0" text="Files" />
-      <ListView fx:id="filesListView" layoutX="23.0" layoutY="317.0" onMouseClicked="#selectFile" prefHeight="114.00009999999747" prefWidth="195.0" />
-      <Button layoutX="221.0" layoutY="449.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="25.0" prefWidth="83.0" text="delete file" styleClass="delete-button"/>
-      <Button layoutX="120.0" layoutY="449.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="25.0" prefWidth="83.0" text="download" />
+    <ListView fx:id="executorsListView" layoutX="250.0" layoutY="259.0" prefHeight="115.0" prefWidth="226.0" />
+    <Label layoutX="250.0" layoutY="233.0" prefWidth="69.0" text="Executors" />
+    <Button id="deleteTask" fx:id="deleteTaskBut" layoutX="494.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="117.0" styleClass="delete-button" text="Delete task" />
+    <Button id="saveTaskChanges" fx:id="saveTaskChangesBut" layoutX="370.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveTaskChanges" prefHeight="25.0" prefWidth="117.0" styleClass="modify-button" text="Save changes" />
+    <Button layoutX="245.0" layoutY="183.0" mnemonicParsing="false" onAction="#createNewTask" prefHeight="25.0" prefWidth="117.0" styleClass="new-button" text="Create new task" />
+    <Button layoutX="530.0" layoutY="605.0" mnemonicParsing="false" onAction="#goToExecutors" prefHeight="16.0" prefWidth="201.0" text="Go To Executors &gt;&gt;&gt;" />
+      <Button layoutX="23.0" layoutY="391.0" mnemonicParsing="false" onAction="#attachFile" prefHeight="25.0" prefWidth="83.0" text="attach file" />
+      <Label layoutX="24.0" layoutY="233.0" prefWidth="69.0" text="Files" />
+      <ListView fx:id="filesListView" layoutX="24.0" layoutY="259.0" onMouseClicked="#selectFile" prefHeight="114.00009999999747" prefWidth="195.0" />
+      <Button layoutX="24.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="25.0" prefWidth="83.0" styleClass="delete-button" text="delete file" />
+      <Button layoutX="139.0" layoutY="391.0" mnemonicParsing="false" onAction="#downloadFile" prefHeight="25.0" prefWidth="83.0" text="download" />
+      <Label layoutX="438.0" layoutY="395.0" text="Hours" />
+      <Label layoutX="506.0" layoutY="233.0" prefWidth="69.0" text="Logs" />
+      <ListView fx:id="logsListView" layoutX="506.0" layoutY="259.0" onMouseClicked="#selectLog" prefHeight="115.0" prefWidth="226.0" />
+      <TextField fx:id="logHoursField" layoutX="506.0" layoutY="391.0" prefHeight="25.0" prefWidth="226.0" />
+      <TextField fx:id="logDayField" layoutX="506.0" layoutY="424.0" prefHeight="25.0" prefWidth="226.0" />
+      <ComboBox fx:id="logExecutorComboBox" layoutX="506.0" layoutY="463.0" onMouseClicked="#onSelectExecutor" prefHeight="25.0" prefWidth="226.0" />
+      <Button id="deleteTask" fx:id="deleteLogBut" layoutX="641.0" layoutY="503.0" mnemonicParsing="false" onAction="#deleteLog" prefHeight="25.0" prefWidth="91.0" styleClass="delete-button" text="Delete Log" />
+      <Button fx:id="createLogBut" layoutX="506.0" layoutY="503.0" mnemonicParsing="false" onAction="#createLog" prefHeight="25.0" prefWidth="91.0" styleClass="new-button" text="Save Log" />
+      <Label layoutX="438.0" layoutY="428.0" text="Day" />
+      <Label layoutX="438.0" layoutY="467.0" text="Executor" />
   </children>
 </AnchorPane>

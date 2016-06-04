@@ -6,14 +6,16 @@ import java.util.ResourceBundle;
 
 import com.mygaienko.pmgmt.context.Context;
 import com.mygaienko.pmgmt.controller.interfaces.Screenable;
-import com.mygaienko.pmgmt.model.AttachedFile;
+import com.mygaienko.pmgmt.model.*;
 import com.mygaienko.pmgmt.screenframework.ScreensMediator;
 import com.mygaienko.pmgmt.screenframework.Main;
+import com.mygaienko.pmgmt.service.FileServiceImpl;
+import com.mygaienko.pmgmt.service.LogServiceImpl;
+import com.mygaienko.pmgmt.service.interfaces.FileService;
+import com.mygaienko.pmgmt.service.interfaces.LogService;
+import javafx.scene.control.*;
 import org.joda.time.DateTime;
 
-import com.mygaienko.pmgmt.model.Executor;
-import com.mygaienko.pmgmt.model.Project;
-import com.mygaienko.pmgmt.model.Task;
 import com.mygaienko.pmgmt.service.interfaces.TaskService;
 import com.mygaienko.pmgmt.service.TaskServiceImpl;
 
@@ -22,10 +24,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -34,12 +32,10 @@ import javafx.scene.input.MouseEvent;
  * @author Angie
  */
 public class TasksController implements Initializable, Screenable {
+
 	private TaskService taskService = TaskServiceImpl.getInstance();
-
-	private ObservableList<Task> tasksObservable = FXCollections.observableArrayList();
-	private ObservableList<Executor> executorsObservable = FXCollections.observableArrayList();
-	private ObservableList<AttachedFile> filesObservable = FXCollections.observableArrayList();
-
+	private FileService fileService = FileServiceImpl.getInstance();
+	private LogService logService = LogServiceImpl.getInstance();
 
 	private Project selectedProject;
 	private Task selectedTask;
@@ -49,12 +45,15 @@ public class TasksController implements Initializable, Screenable {
 	
 	@FXML
 	ListView<Task> tasksListView;
+    private ObservableList<Task> tasksObservable = FXCollections.observableArrayList();
 
 	@FXML
 	ListView<Executor> executorsListView;
+    private ObservableList<Executor> executorsObservable = FXCollections.observableArrayList();
 
 	@FXML
 	ListView<AttachedFile> filesListView;
+    private ObservableList<AttachedFile> filesObservable = FXCollections.observableArrayList();
 
 	@FXML
 	Label projectId;
@@ -67,12 +66,35 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	TextField endDateId;
+
+    @FXML
+    ComboBox<TaskStatus> statusComboBox;
 	
 	@FXML
 	Button saveTaskChangesBut;
-	
+
+    @FXML
+    Button deleteTaskBut;
+
+    /*Logs*/
 	@FXML
-	Button deleteTaskBut;
+    ListView<Log> logsListView;
+    private ObservableList<Log> logsObservable = FXCollections.observableArrayList();
+
+    @FXML
+    TextField logHoursField;
+
+    @FXML
+    TextField logDayField;
+
+    @FXML
+    ComboBox<Executor> logExecutorComboBox;
+
+    @FXML
+    Button createLogBut;
+
+    @FXML
+    Button deleteLogBut;
 
 	/**
 	 * Initializes the controller class.
@@ -80,6 +102,9 @@ public class TasksController implements Initializable, Screenable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		tasksListView.setItems(tasksObservable);
+        filesListView.setItems(filesObservable);
+        executorsListView.setItems(executorsObservable);
+        logsListView.setItems(logsObservable);
 	}
 
 	@Override
@@ -92,6 +117,7 @@ public class TasksController implements Initializable, Screenable {
 			saveTaskChangesBut.setDisable(true);
 			deleteTaskBut.setDisable(true);
 		}
+        statusComboBox.setItems(FXCollections.observableArrayList(TaskStatus.values()));
 	}
 
 	public void setScreenParent(ScreensMediator screenParent) {
@@ -100,12 +126,13 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	private void saveTaskChanges(ActionEvent event) {
-		selectedTask = tasksListView.getSelectionModel().getSelectedItem();
+		selectedTask = getSelectedTask();
 		if (selectedTask == null) return;
 		//tasksObservable.remove(selectedTask);
 		selectedTask.setDescription(descriptionId.getText());
 		selectedTask.setStartDate(new DateTime(startDateId.getText()));
 		selectedTask.setEndDate(new DateTime(endDateId.getText()));
+		selectedTask.setStatus(statusComboBox.getValue());
 		//tasksObservable.add(selectedTask);
 
 		taskService.merge(selectedTask);
@@ -114,7 +141,7 @@ public class TasksController implements Initializable, Screenable {
 
 	private void refreshTasksObservable() {
 		tasksObservable.clear();
-		tasksObservable.addAll(selectedProject.getTasks());
+		tasksObservable.addAll(taskService.getByProject(selectedProject));
 	}
 
 	@FXML
@@ -124,19 +151,18 @@ public class TasksController implements Initializable, Screenable {
 		newTask.setStartDate(new DateTime(startDateId.getText()));
 		newTask.setEndDate(new DateTime(endDateId.getText()));
 		newTask.setProject(selectedProject);
-		
-		tasksObservable.add(newTask);
-		selectedProject.addTask(newTask);
-		
+		newTask.setStatus(TaskStatus.NOT_STARTED);
 		taskService.persist(newTask);
-		
+
+		refreshTasksObservable();
+
 		tasksListView.getSelectionModel().select(newTask);
 		Context.put(Context.SELECTED_TASK, newTask);
 	}
 
 	@FXML
 	private void deleteTask(ActionEvent event) {
-		selectedTask = tasksListView.getSelectionModel().getSelectedItem();
+		selectedTask = getSelectedTask();
 		if (selectedTask == null) return;
 		tasksObservable.remove(selectedTask);
 		selectedProject.deleteTask(selectedTask);
@@ -146,7 +172,6 @@ public class TasksController implements Initializable, Screenable {
 		if (executorsObservable != null) {
 			executorsObservable.clear();
 		}
-		
 	}
 
 	@FXML
@@ -166,7 +191,7 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	private void selectTask(MouseEvent event) {
-		selectedTask = (Task) tasksListView.getSelectionModel().getSelectedItem();
+		selectedTask = getSelectedTask();
 		if (selectedTask == null) return;
 		taskService.refresh(selectedTask);
 
@@ -176,35 +201,59 @@ public class TasksController implements Initializable, Screenable {
 
 		setSelectedProjectProperties();
 		fillExecutorsView();
+		fillLogsView();
 		fillAttachedFilesView();
 	}
 
-	private void refreshAttachedFilesView() {
+    private Task getSelectedTask() {
+        return tasksListView.getSelectionModel().getSelectedItem();
+    }
+
+    private void fillLogsView() {
+        logsObservable.clear();
+        logsObservable.addAll(logService.getLogsByTask(selectedTask));
+    }
+
+    private void refreshAttachedFilesView() {
 		taskService.refresh(selectedTask);
 		fillAttachedFilesView();
 	}
 
+	private void refreshLogsView() {
+		taskService.refresh(selectedTask);
+		fillLogsView();
+	}
+
 	private void fillAttachedFilesView() {
 		if (selectedTask.getAttachedFiles() != null) {
-			filesObservable = FXCollections.observableArrayList(selectedTask.getAttachedFiles());
-			filesListView.setItems(filesObservable);
+            filesObservable.clear();
+			filesObservable.addAll(selectedTask.getAttachedFiles());
+
 		}
 	}
 
 	private void fillExecutorsView() {
 		if (selectedTask.getExecutors() != null) {
-			executorsObservable = FXCollections
-					.observableArrayList(selectedTask.getExecutors());
-			executorsListView.setItems(executorsObservable);
+            executorsObservable.clear();
+			executorsObservable.addAll(selectedTask.getExecutors());
+
 		}
 	}
 
 	@FXML
 	private void selectFile(MouseEvent event) {
-		selectedFile = (AttachedFile) filesListView.getSelectionModel().getSelectedItem();
+		selectedFile = getSelectedFile();
 	}
 
-	@FXML
+    private AttachedFile getSelectedFile() {
+        return filesListView.getSelectionModel().getSelectedItem();
+    }
+
+    private Log getSelectedLog() {
+        return logsListView.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
 	private void attachFile(ActionEvent event) throws IOException {
 		if (selectedTask == null) return;
 
@@ -215,14 +264,14 @@ public class TasksController implements Initializable, Screenable {
 		inputStream.read(fileData);
 		inputStream.close();
 
-		taskService.attachFile(new AttachedFile(fileData, file.getName(), selectedTask));
+		fileService.attachFile(new AttachedFile(fileData, file.getName(), selectedTask));
 
 		refreshAttachedFilesView();
 	}
 
 	@FXML
 	private void downloadFile(ActionEvent event) throws IOException {
-		selectedFile = filesListView.getSelectionModel().getSelectedItem();
+		selectedFile = getSelectedFile();
 		if (selectedFile == null) return;
 
 		File file = mediator.showSaveDialog();
@@ -234,10 +283,10 @@ public class TasksController implements Initializable, Screenable {
 
 	@FXML
 	private void deleteFile(ActionEvent event) throws IOException {
-		selectedFile = filesListView.getSelectionModel().getSelectedItem();
+		selectedFile = getSelectedFile();
 		if (selectedFile == null) return;
 
-		taskService.deleteFile(selectedFile);
+		fileService.deleteFile(selectedFile);
 	}
 
 	private void setSelectedProjectProperties() {
@@ -246,4 +295,35 @@ public class TasksController implements Initializable, Screenable {
 		startDateId.setText(selectedTask.getStartDate().toString("yy-MM-dd"));
 		endDateId.setText(selectedTask.getEndDate().toString("yy-MM-dd"));
 	}
+
+    @FXML
+    private void onSelectExecutor(MouseEvent event) {
+        logExecutorComboBox.setItems(FXCollections.observableArrayList(selectedTask.getExecutors()));
+    }
+
+    @FXML
+    private void selectLog(MouseEvent event) {
+        getSelectedLog();
+    }
+
+    @FXML
+    private void createLog(ActionEvent event) {
+        Log log = new Log();
+        log.setHours(Integer.valueOf(logHoursField.getText()));
+        log.setDate(new DateTime(logDayField.getText()));
+        log.setTask(selectedTask);
+        log.setExecutor(logExecutorComboBox.getValue());
+
+        logService.persist(log);
+
+		refreshLogsView();
+    }
+
+    @FXML
+    private void deleteLog(ActionEvent event) {
+        logService.delete(getSelectedLog());
+
+		refreshLogsView();
+    }
+
 }

@@ -83,7 +83,7 @@ public class ExecutorsController implements Initializable, Screenable {
 
 	@FXML
 	private void selectExecutor(MouseEvent mouse){
-		selectedExecutor = (Executor) executorListView.getSelectionModel().getSelectedItem();
+		selectedExecutor = getSelectedExecutor();
 		if (selectedExecutor == null) return;
 		saveChangesBut.setDisable(false);
 		deleteExecutorBut.setDisable(false);
@@ -97,7 +97,7 @@ public class ExecutorsController implements Initializable, Screenable {
 
 	@FXML
 	private void saveChanges(ActionEvent event) {
-		selectedExecutor = (Executor) executorListView.getSelectionModel().getSelectedItem();
+		selectedExecutor = getSelectedExecutor();
 		if (selectedExecutor == null) return;
 		executorsObservable.remove(selectedExecutor);
 
@@ -106,6 +106,10 @@ public class ExecutorsController implements Initializable, Screenable {
 		executorsObservable.add(selectedExecutor);
 		
 		executorService.merge(selectedExecutor);
+	}
+
+	private Executor getSelectedExecutor() {
+		return executorListView.getSelectionModel().getSelectedItem();
 	}
 
 	@FXML
@@ -120,10 +124,10 @@ public class ExecutorsController implements Initializable, Screenable {
 
 	@FXML
 	private void deleteExecutor(ActionEvent event) {
-		selectedExecutor = (Executor) executorListView.getSelectionModel().getSelectedItem();
+		selectedExecutor = getSelectedExecutor();
 		if (selectedExecutor == null) return;
 //		TaskExecutor.deleteByExecutor(selectedExecutor);
-	/*	Executor.deleteExecutor(selectedExecutor);*/
+	/*	Executor.delete(selectedExecutor);*/
 		executorsObservable.remove(selectedExecutor);
 		tasksObservable.clear();
 
@@ -132,7 +136,7 @@ public class ExecutorsController implements Initializable, Screenable {
 
 	@FXML
 	private void appointForTask(ActionEvent event) {
-		selectedExecutor = (Executor) executorListView.getSelectionModel().getSelectedItem();
+		selectedExecutor = getSelectedExecutor();
 		if (selectedExecutor == null) return;
 		executorsObservable.remove(selectedExecutor);
 		selectedExecutor.addTask(selectedTask);

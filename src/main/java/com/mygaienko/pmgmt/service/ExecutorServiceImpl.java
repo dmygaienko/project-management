@@ -23,7 +23,7 @@ public class ExecutorServiceImpl implements ExecutorService {
 	
 	@Override
 	public Executor getExecutorById(int id) {
-		return execDao.getExecutorById(id);
+		return execDao.getById(id);
 	}
 	
 	@Override
@@ -33,12 +33,12 @@ public class ExecutorServiceImpl implements ExecutorService {
 	
 	@Override
 	public List<Executor> getAllExecutors() {
-		return execDao.getAllExecutors();
+		return execDao.getAll();
 	}
 
 	@Override
 	public void deleteExecutor(Executor executor) {
-		execDao.deleteExecutor(executor);
+		execDao.delete(executor);
 	}
 	
 	@Override

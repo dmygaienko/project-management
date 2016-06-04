@@ -13,7 +13,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	private EntityManager eM = EntityManagerSingleton.getEntityManager();
 	
 	@Override
-	public void deleteProject(Project project) {
+	public void delete(Project project) {
 		eM.getTransaction().begin();
 		project = eM.find(Project.class, project.getId());
 		if (project != null) {
@@ -37,7 +37,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public Project getProjectById(int id) {
+	public Project getById(int id) {
 		Project project = eM.find(Project.class, id);
 		return project;
 	}
