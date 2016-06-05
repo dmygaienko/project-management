@@ -70,6 +70,6 @@ public class Log {
 
     @Override
     public String toString() {
-        return executor + ": " + hours + " hours on " + date ;
+        return executor + ": " + hours + " hours on " + date.toString("yyyy-MMM-dd");
     }
 }

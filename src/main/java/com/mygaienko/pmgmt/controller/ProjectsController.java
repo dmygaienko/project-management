@@ -24,6 +24,8 @@ import com.mygaienko.pmgmt.model.Project;
 import com.mygaienko.pmgmt.service.interfaces.ProjectService;
 import com.mygaienko.pmgmt.service.ProjectServiceImpl;
 
+import static com.mygaienko.pmgmt.utils.DateUtils.dateToString;
+
 /**
  * FXML ProjectsController class
  * 
@@ -98,8 +100,8 @@ public class ProjectsController implements Initializable, Screenable {
 		} else if (mouseEvent.getClickCount() == 1) {	
 			if (selectedProject == null) return;
 			String description = selectedProject.getDesription();
-			String startDate = selectedProject.getStartDate().toString("yy-MM-dd");
-			String endDate = selectedProject.getEndDate().toString("yy-MM-dd");
+			String startDate = dateToString(selectedProject.getStartDate());
+			String endDate = dateToString(selectedProject.getEndDate());
 			descriptionId.setText(description != null ? description : "blank");
 			startDateId.setText(startDate != null ? startDate : "blank");
 			endDateId.setText(endDate != null ? endDate : "blank");

@@ -20,10 +20,12 @@ public class LogDaoImpl implements LogDao {
 
 	@Override
 	public void delete(Log log) {
+		eM.getTransaction().begin();
 		log = eM.find(Log.class, log.getId());
 		if (log != null) {
 			eM.remove(log);
 		}
+		eM.getTransaction().commit();
 	}
 	
 	@Override

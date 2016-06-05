@@ -6,6 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
+ * http://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml
+ * http://javarticles.com/2015/04/guava-eventbus-examples.html
  *
  * @author dmygaien
  */

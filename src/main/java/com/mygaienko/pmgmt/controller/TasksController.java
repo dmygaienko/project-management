@@ -14,7 +14,6 @@ import com.mygaienko.pmgmt.service.LogServiceImpl;
 import com.mygaienko.pmgmt.service.interfaces.FileService;
 import com.mygaienko.pmgmt.service.interfaces.LogService;
 import javafx.scene.control.*;
-import org.joda.time.DateTime;
 
 import com.mygaienko.pmgmt.service.interfaces.TaskService;
 import com.mygaienko.pmgmt.service.TaskServiceImpl;
@@ -25,6 +24,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+
+import static com.mygaienko.pmgmt.utils.DateUtils.dateToString;
+import static com.mygaienko.pmgmt.utils.DateUtils.parseDate;
 
 /**
  * FXML Controller class
@@ -130,8 +132,8 @@ public class TasksController implements Initializable, Screenable {
 		if (selectedTask == null) return;
 		//tasksObservable.remove(selectedTask);
 		selectedTask.setDescription(descriptionId.getText());
-		selectedTask.setStartDate(new DateTime(startDateId.getText()));
-		selectedTask.setEndDate(new DateTime(endDateId.getText()));
+		selectedTask.setStartDate(parseDate(startDateId.getText()));
+		selectedTask.setEndDate(parseDate(endDateId.getText()));
 		selectedTask.setStatus(statusComboBox.getValue());
 		//tasksObservable.add(selectedTask);
 
@@ -148,8 +150,8 @@ public class TasksController implements Initializable, Screenable {
 	private void createNewTask(ActionEvent event) {
 		Task newTask = new Task();
 		newTask.setDescription(descriptionId.getText());
-		newTask.setStartDate(new DateTime(startDateId.getText()));
-		newTask.setEndDate(new DateTime(endDateId.getText()));
+		newTask.setStartDate(parseDate(startDateId.getText()));
+		newTask.setEndDate(parseDate(endDateId.getText()));
 		newTask.setProject(selectedProject);
 		newTask.setStatus(TaskStatus.NOT_STARTED);
 		taskService.persist(newTask);
@@ -292,8 +294,9 @@ public class TasksController implements Initializable, Screenable {
 	private void setSelectedProjectProperties() {
 		projectId.setText(selectedProject.getName());
 		descriptionId.setText(selectedTask.getDescription());
-		startDateId.setText(selectedTask.getStartDate().toString("yy-MM-dd"));
-		endDateId.setText(selectedTask.getEndDate().toString("yy-MM-dd"));
+		startDateId.setText(dateToString(selectedTask.getStartDate()));
+		endDateId.setText(dateToString(selectedTask.getEndDate()));
+		statusComboBox.getSelectionModel().select(selectedTask.getStatus());
 	}
 
     @FXML
@@ -310,7 +313,7 @@ public class TasksController implements Initializable, Screenable {
     private void createLog(ActionEvent event) {
         Log log = new Log();
         log.setHours(Integer.valueOf(logHoursField.getText()));
-        log.setDate(new DateTime(logDayField.getText()));
+        log.setDate(parseDate(logDayField.getText()));
         log.setTask(selectedTask);
         log.setExecutor(logExecutorComboBox.getValue());
 
@@ -319,7 +322,7 @@ public class TasksController implements Initializable, Screenable {
 		refreshLogsView();
     }
 
-    @FXML
+	@FXML
     private void deleteLog(ActionEvent event) {
         logService.delete(getSelectedLog());
 
